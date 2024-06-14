@@ -13,6 +13,14 @@ class Pessoa:
     def cumprimentar(self):
         print('\nOla, tudo bem com vc?')
 
+    @staticmethod # decorator usado para indicar que a funcao abaixo dele eh statica e nao depende de nada na classe
+    def metodo_estatico():# veja que o metodo nao possui o self como parametro
+        return 69
+
+    @classmethod # decorator usado para indicar que a funçao acessa atributos da classe.
+    def nome_e_atributos_de_classe(cls):# cls refere-se a classe Pessoa
+        return f'{cls} - olhos {cls.olhos}'    
+
 if __name__ == '__main__':
     cafu = Pessoa(nome='Cafu', idade=32)
     bruno = Pessoa(nome='Bruno', idade=20)
@@ -46,3 +54,5 @@ if __name__ == '__main__':
     for pessoa in pessoas:
         print(pessoa.olhos, id(pessoa.olhos), pessoa.nome, id(pessoa.nome))# Mostra os atributos olhos de todas as pessoas e seu id comprovando que sao iguais
         
+    print(Pessoa.metodo_estatico(),dunga.metodo_estatico())# acesso ao metodo statico via classe Pessoa e uma de suas instancias
+    print(Pessoa.nome_e_atributos_de_classe(),dunga.nome_e_atributos_de_classe())# acesso ao metodo da classe via classe Pessoa e uma de suas instancias
