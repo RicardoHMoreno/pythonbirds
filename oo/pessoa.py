@@ -26,3 +26,13 @@ if __name__ == '__main__':
     print(f'Eu me chamo {dunga.nome} e tenho {dunga.idade} anos')
     for filho in dunga.filhos:
         print(f'{filho.nome} eh meu filho') 
+
+    pessoas = [cafu, bruno, dunga]
+    for pessoa in pessoas:
+        print(pessoa.__dict__)# Mostra os atributos atuais das pessoas
+
+    del dunga.filhos# modifica dinamicamente o atributo filho de dunga, deletando ele. Isso so afteta dunga.
+    dunga.sobrenome = 'dos Santos' # Cria dinamicamente o atributo sobrenome para dunga.  
+
+    for pessoa in pessoas:
+        print(pessoa.__dict__)# Mostra os atributos novamente apos as modificaçoes dinamicas   
