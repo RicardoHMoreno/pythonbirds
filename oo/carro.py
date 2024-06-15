@@ -18,7 +18,48 @@
     4 medodo girar a direita
     5 metodo girar a esquerda
     6 metodo calcular direcao
-    '''
+
+    NOTA: Abaixo temos um exemplo de como deveriam ser as respostar se executassemos em linha de comando as classes para 
+    este exercicio. Para testar isso eh possivel utilizar o modulo python chamado doctest escrevendo na linha de comando
+    do terminal o sequinte:
+    python -m doctest -f carro.py
+    -m: indica ao python que vc quer executar um modulo
+    doctest: eh o modulo a ser executado
+    -f: opcao de doctest que faz o teste parar assim que encontra o primeiro erro
+    carro.py eh o modulo a ser testado usando doctest
+
+    O PyCharm tem uma interface grafica mais interessante para rodar os mesmos testes sem usar linha de comando
+
+    Exemplo:
+    >>> motor = Motor()
+    >>> motor.velocidade
+    0
+    >>> direcao = Direcao()
+    >>> direcao.direcao_atual
+    'Norte'
+    >>> direcao.girar_a_direita()
+    'Leste'
+    >>> direcao.girar_a_esquerda()
+    'Norte'
+    >>> motor.acelerar()
+    1
+    >>> motor.reduzir()
+    0
+    >>> carro = Carro(motor, direcao)
+    >>> carro.virar_a_direita()
+    <BLANKLINE>
+    O carro virou a direita
+    >>> carro.virar_a_esquerda()
+    <BLANKLINE>
+    O carro virou a esquerda
+    >>> carro.acelerar()
+    <BLANKLINE>
+    O carro acelerou 1 unidade(s)
+    >>> carro.reduzir()
+    <BLANKLINE>
+    O carro reduziu 1 unidade(s)
+
+'''
 class Motor():
     def __init__(self, velocidade=0):
         self.velocidade = velocidade
@@ -35,8 +76,13 @@ class Motor():
         return self.velocidade    
 
 class Direcao():
-    direcoes = ['Norte','Lest','Sul','Oest']
-    direcao_atual = direcoes[0]
+    direcoes = ['Norte','Leste','Sul','Oeste']
+    
+    def __init__(self, direcao_inicial='Norte'):
+        if direcao_inicial in Direcao.direcoes:
+            Direcao.direcao_atual = direcao_inicial
+        else:    
+            Direcao.direcao_atual = Direcao.direcoes[0]
 
     def girar_a_direita(self):
         if Direcao.direcao_atual == Direcao.direcoes[-1]:
@@ -82,8 +128,8 @@ class Carro():
 
 if __name__ == '__main__':
     
-    motor = Motor()
-    direcao = Direcao()
+    motor = Motor(10)
+    direcao = Direcao('Sul')
     carro = Carro(motor, direcao)
     # print('Testes de direcao:')
     # for _ in range(4):
