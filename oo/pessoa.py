@@ -20,9 +20,11 @@ class Pessoa:
     @classmethod # decorator usado para indicar que a funçao acessa atributos da classe.
     def nome_e_atributos_de_classe(cls):# cls refere-se a classe Pessoa
         return f'{cls} - olhos {cls.olhos}'    
+class Homem(Pessoa):
+    pass
 
 if __name__ == '__main__':
-    cafu = Pessoa(nome='Cafu', idade=32)
+    cafu = Homem(nome='Cafu', idade=32)
     bruno = Pessoa(nome='Bruno', idade=20)
     dunga = Pessoa(cafu, bruno, nome='Dunga', idade=44)
     
@@ -56,3 +58,8 @@ if __name__ == '__main__':
         
     print(Pessoa.metodo_estatico(),dunga.metodo_estatico())# acesso ao metodo statico via classe Pessoa e uma de suas instancias
     print(Pessoa.nome_e_atributos_de_classe(),dunga.nome_e_atributos_de_classe())# acesso ao metodo da classe via classe Pessoa e uma de suas instancias
+
+    print(isinstance(cafu, Pessoa))
+    print(isinstance(cafu, Homem))
+    print(isinstance(bruno, Pessoa))
+    print(isinstance(bruno, Homem))
